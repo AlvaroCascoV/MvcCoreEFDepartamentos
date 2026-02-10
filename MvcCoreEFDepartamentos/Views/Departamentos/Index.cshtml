@@ -1,32 +1,47 @@
-﻿@model List<Departamento>
+﻿@model IEnumerable<MvcCoreEFDepartamentos.Models.Departamento>
 
-<h1>Departamentos</h1>
-@if(Model != null)
-{
-    <a asp-action="Create" asp-controller="Departamentos" class="btn btn-success">Crear Departamento</a>
-<table class="table table-bordered">
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Localidad</th>
+            <th>
+                @Html.DisplayNameFor(model => model.deptNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.localidad)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        
-        @foreach(Departamento dept in Model)
-        {
+@foreach (var item in Model) {
         <tr>
-            <td>@dept.deptNo</td>
-            <td>@dept.dNombre</td>
-            <td>@dept.localidad</td>
             <td>
-                <a asp-action="Details" asp-controller="Departamentos" asp-route-deptno="@dept.deptNo" class="btn btn-primary">Detalles</a>
-                <a asp-action="Delete" asp-controller="Departamentos" asp-route-deptno="@dept.deptNo" class="btn btn-danger">Delete</a>
-                <a asp-action="Edit" asp-controller="Departamentos" asp-route-deptno="@dept.deptNo" class="btn btn-warning">Edit</a>
+                @Html.DisplayFor(modelItem => item.deptNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.localidad)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { item.deptNo }) |
+                    @Html.ActionLink("Details", "Details", new { item.deptNo }) |
+                    @Html.ActionLink("Delete", "Delete", new { item.deptNo })
             </td>
         </tr>
-        }
+}
     </tbody>
 </table>
-}
