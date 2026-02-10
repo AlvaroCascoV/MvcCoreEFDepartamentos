@@ -1,0 +1,19 @@
+﻿@model Departamento
+
+<h1>Detalles</h1>
+@if(Model == null)
+{
+    <div class="alert alert-danger">
+        No se ha encontrado el departamento
+    </div>
+}
+else
+{
+    
+
+<ul class="list-group">
+    <li class="list-group-item">ID: @Model.deptNo</li>
+    <li class="list-group-item">Nombre: @Model.dNombre</li>
+    <li class="list-group-item">Localidad: @Model.localidad</li>
+</ul>
+}
